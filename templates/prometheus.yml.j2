@@ -4,8 +4,10 @@
 
 global:
   {{ prometheus_global | to_nice_yaml(indent=2) | indent(2, False) }}
+{% if prometheus_external_labels != [] %}
   external_labels:
     {{ prometheus_external_labels | to_nice_yaml(indent=2) | indent(4, False) }}
+{% endif %}
 
 {% if prometheus_remote_write != [] %}
 remote_write:
